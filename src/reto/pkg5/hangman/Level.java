@@ -50,7 +50,7 @@ class Level {
     public void setNumLetter(int numLetter) {
         this.numLetter = numLetter;
     }
-
+    
     @Override
     public String toString() {
         return id+ ") " + nameLevel + " (" + numLetter + " letras)";

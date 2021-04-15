@@ -37,6 +37,11 @@ class Word {
         this.myLevel = myLevel;
     }
 
+    /**
+     * Crea un arreglo de "X" con la cantidad de la palabra 
+     *  que se eligio random. 
+     * @return arreglo con la cantidad de "X".
+     */
     public char[] transformToX(){   
         int numLetterWord = this.word.length();
         char [] numX = new char [numLetterWord];
@@ -46,6 +51,13 @@ class Word {
         return numX;
     }
 
+    /**
+     * Compara la letra que se ha ingresado con la palabra que se eligio random,
+     *  sustituye la "X" en la posicion de una letra acertada.
+     * @param xWord arreglo de las "X".
+     * @param letter letra ingresada.
+     * @return regresa el arreglo xWord modificado.
+     */
     public char[] compareLetter(char[] xWord, char letter){
         boolean correctLetter = false;
         for(int i = 0; i<this.word.length(); i++){
