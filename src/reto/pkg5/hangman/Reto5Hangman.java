@@ -75,11 +75,11 @@ public class Reto5Hangman {
         char[] xWord = levelWord(numLevel);
         Word word= getRandom(numLevel);  
         char letter = 0;
-        char[] successfulWord = null;
+        char[] successfulWord;
         boolean winCondition = false;
         System.out.println(xWord);     
         do{
-            letter= Letter.approveLetter(letter);
+            letter = approveLetter(letter);
             if (letter == '0'){
                 break;
             }
