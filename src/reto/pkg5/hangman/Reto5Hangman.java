@@ -74,7 +74,8 @@ public class Reto5Hangman {
     }
 
     /**
-     * Método que junta todas los demás métodos para poder jugar.
+     * -----------------AQUI ESTA LO DEL RETO 6-----------------
+     * Método que junta todas los demás métodos para poder jugar. 
      * @param numLevel número del nivel.
      */
     public static void play(int numLevel){
