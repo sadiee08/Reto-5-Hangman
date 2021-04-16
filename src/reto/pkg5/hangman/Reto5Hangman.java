@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Reto5Hangman {
     public static Player myPlayer;
-    
+
     /**
      * Declaracion de niveles tipo Level.
      */
@@ -22,7 +22,7 @@ public class Reto5Hangman {
         new Level ("Normal", 8),
         new Level ("Dificil", 12)
     };
-    
+
     /**
      * Se encarga de seleccionar una palabra Random dependiendo del nivel elegido.
      * @param numLevel Número del nivel.
@@ -46,7 +46,7 @@ public class Reto5Hangman {
         };
         return myWords[numLevel-1][ran.nextInt(myWords[numLevel-1].length)];
     }
-    
+
     /**
      * Transforma la pablabra de getRandom en "X"
      * @param numLevel nivel del juego elegido.
@@ -57,18 +57,14 @@ public class Reto5Hangman {
         return hiddenWord.transformToX();
     }
     
-    /**
-     * revisa que haya alguna "X" en la palabra para poder acabar el juego.
-     * @param word contiene las "X" y las demás letras ya acertadas.
-     * @return Regresa true si ya no hay "X", si lo hay regresa false.
-     */
-    public static boolean gameOver(char[]word){
-        for (int i= 0; i <= word.length-1; i++){
-            if (word[i] == 'X'){
-                return false;
+    public static char approveLetter(char checkLetter){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce una letra: ");
+            checkLetter = sc.next().charAt(0);
+            if (checkLetter == '0') {
+                System.out.println("~~~Cerraste el juego~~~");
             }
-        }
-        return true;
+        return checkLetter;
     }
 
     /**
@@ -76,23 +72,28 @@ public class Reto5Hangman {
      * @param numLevel número del nivel.
      */
     public static void play(int numLevel){
-        Scanner sc = new Scanner(System.in);
         char[] xWord = levelWord(numLevel);
         Word word= getRandom(numLevel);  
-        char letter;
-        char[] successfulWord;
+        char letter = 0;
+        char[] successfulWord = null;
+        boolean winCondition = false;
         System.out.println(xWord);     
-        do{  
-            System.out.print("Introduce una letra: ");
-            letter = sc.next().charAt(0);
+        do{
+            letter= Letter.approveLetter(letter);
             if (letter == '0'){
                 break;
             }
-            successfulWord = word.compareLetter(xWord, letter);           
-            System.out.println(successfulWord);
-            
-        } while(!gameOver(successfulWord)); 
-        System.out.println("\n¡Ganaste!");
+            try {
+                if (!Character.isLetter(letter)) {
+                    throw new Exception();
+                }
+                successfulWord = word.compareLetter(xWord, letter);          
+                System.out.println(successfulWord);
+                winCondition = word.checkWinCondition(successfulWord);
+            } catch(Exception e) {
+                System.out.println("\n¡No es una letra, intentalo de nuevo!");
+            }   
+        } while (!winCondition); 
     }
 
     /**
@@ -115,6 +116,6 @@ public class Reto5Hangman {
         int numLevel= sc.nextInt();
         if (numLevel!=0 && numLevel<=3){
            play(numLevel);     
-        }          
+        }
     }
 }

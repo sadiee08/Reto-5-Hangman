@@ -68,11 +68,26 @@ class Word {
         }
         if (correctLetter == false){
             
-            System.out.println("¡Intentalo de nuevo!\n");
+            System.out.println("¡Esa letra no está!\n");
         }
         return xWord;
     }
 
+    /**
+     * revisa que haya alguna "X" en la palabra para poder acabar el juego.
+     * @param word contiene las "X" y las demás letras ya acertadas.
+     * @return Regresa true si ya no hay "X", si lo hay regresa false.
+     */ 
+    public boolean checkWinCondition(char[] word){
+        for (int i= 0; i <= word.length-1; i++){
+            if (word[i] == 'X'){
+                return false;
+            }
+        }
+        System.out.println("\n¡Ganaste!");
+        return true;
+    }
+    
     @Override
     public String toString() {
         return "palabra: " + this.word + ", el nivel: " + this.myLevel ;
