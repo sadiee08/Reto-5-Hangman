@@ -56,7 +56,13 @@ public class Reto5Hangman {
         Word hiddenWord = getRandom(numLevel);
         return hiddenWord.transformToX();
     }
-    
+
+    /**
+     * Puedes introducir la letra que crees que vaya a coincidir, si pones 0,
+     * te imprimira que cerraste el juego.
+     * @param checkLetter
+     * @return regresa el char con la letra ingresada.
+     */
     public static char approveLetter(char checkLetter){
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduce una letra: ");
@@ -80,9 +86,7 @@ public class Reto5Hangman {
         System.out.println(xWord);     
         do{
             letter = approveLetter(letter);
-            if (letter == '0'){
-                break;
-            }
+            if (letter == '0') break;
             try {
                 if (!Character.isLetter(letter)) {
                     throw new Exception();
