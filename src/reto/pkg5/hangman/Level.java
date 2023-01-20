@@ -5,7 +5,7 @@
  */
 package reto.pkg5.hangman;
 
-/**
+/**public static int numLevel =0;
  *
  * @author abbys
  */
